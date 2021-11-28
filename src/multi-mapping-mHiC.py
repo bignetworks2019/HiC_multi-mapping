@@ -103,6 +103,10 @@ def get_fragment_diff(chr, pos, fragment_dic):
     read_value = int(float(pos))
     idx = bisect.bisect_left(fragments, read_value)
 
+    # check for empty chromosome fragments; Ex: chrM
+    if len(fragments)==0:
+        return 1e10
+
     if idx == 0:
         fragment_index_diff = fragments[idx] - read_value
     elif idx == len(fragments):
